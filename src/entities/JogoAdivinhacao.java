@@ -1,7 +1,7 @@
 package entities;
 
 public class JogoAdivinhacao {
-    
+    // a função dos vetores é pra guardar um mesmo tipo de dado 
     // métoso para retornar a palavra oculta
     public static String palavraOculta() {
         String palavra;
