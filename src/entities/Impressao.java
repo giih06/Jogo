@@ -2,8 +2,8 @@ package entities;
 
 public class Impressao {
 
-    public static void imprimir(int arg){
-        System.out.println(arg);
+    public static void imprimir(JogoDaForca forca){
+        System.out.println(forca);
     }
     public static void imprimir(char arg){
         System.out.println(arg);
