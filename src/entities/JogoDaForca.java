@@ -51,12 +51,6 @@ public class JogoDaForca {
         return letras;
     }
 
-
-    // Método para efetuar a estratégia // AJUDA
-    public static void estrategia() {
-
-    }
-
     // método para a forca
     public static void forca(String[] args) {
         System.out.println("------");
@@ -122,7 +116,7 @@ public class JogoDaForca {
     }
 
     // Método para efetuar a jogada 
-    public static String digitaLetra() { // AJUDA
+    public static String digitaLetra() {
         Scanner sc = new Scanner(System.in); 
             for(int i=0; i <= 5; i++) { 
                 System.out.print("\nInforme a letra da" + (i+1) + "tentativa: ");
@@ -149,8 +143,8 @@ public class JogoDaForca {
 
         // Método para identificar o vencedor / perdedor // AJUDA
         public static String Placar() {
-            String a = "a";
-            return a;
+            if()
+            return "VOCE GANHOU";
         }
 }
 
