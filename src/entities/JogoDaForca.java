@@ -179,8 +179,8 @@ public class JogoDaForca {
         }
 
         // Método para identificar o vencedor / perdedor // AJUDA
-        public static void Placar() {
-
+        public static String Placar() {
+          if(letras[0] == underline[0])  
         }
 }
 
