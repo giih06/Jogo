@@ -5,51 +5,6 @@ import java.util.Scanner;
 
 // Giovanna Mendonça Federico
 public class JogoDaForca {
-    // Construtor
-    public JogoDaForca() {
-
-    }
-
-    // Método para definir a palavra oculta
-    public static String palavraOculta() {
-        Random ran = new Random(); // Chamei a classe Random que gera números aleatórios
-        String[] palavras = {"java", "gato", "frio", "mente", "chat"}; // Array de string com 5 palavras
-        return palavras[ran.nextInt(palavras.length - 1)]; // retorna um número inteiro aleatório entre 0 e o comprimento do array palavras ( nesse caso é 5)
-    }
-
-    // Método para transormar a palavra oculta em um vetor
-    public static char[] palavraEscolhida() {
-        char[] letras = new char[4];
-        String palavra = palavraOculta();
-        if(palavra == "java") {
-            letras[0] = 'j';
-            letras[1] = 'a';
-            letras[2] = 'v';
-            letras[3] = 'a';
-        } else if(palavra == "gato") {
-            letras[0] = 'g';
-            letras[1] = 'a';
-            letras[2] = 't';
-            letras[3] = 'o';
-        } else if(palavra == "frio") {
-            letras[0] = 'f';
-            letras[1] = 'r';
-            letras[2] = 'i';
-            letras[3] = 'o';
-        } else if(palavra == "quente") {
-            letras[0] = 'm';
-            letras[1] = 'e';
-            letras[2] = 'n';
-            letras[3] = 't';
-            letras[4] = 'e';
-        } else if(palavra == "chat") {
-            letras[0] = 'c';
-            letras[1] = 'h';
-            letras[2] = 'a';
-            letras[3] = 't';
-        }
-        return letras;
-    }
 
     // método para a forca
     public static void forca(String[] args) {
@@ -114,9 +69,24 @@ public class JogoDaForca {
         System.out.println("|   / \\");
         System.out.println("---");
     }
+    // atributos
+    String letrasUsadas = "";
+    String palavraAdivinhada = "";
+    int maxTentativas = 10;
+    // Construtor
+    public JogoDaForca() {
+
+    }
+
+    // Método para definir a palavra oculta
+    public static String palavraOculta() {
+        Random ran = new Random(); // Chamei a classe Random que gera números aleatórios
+        String[] palavras = {"java", "gato", "frio", "mente", "chat"}; // Array de string com 5 palavras
+        return palavras[ran.nextInt(palavras.length - 1)]; // retorna um número inteiro aleatório entre 0 e o comprimento do array palavras ( nesse caso é 5)
+    }
 
     // Método para efetuar a jogada 
-    public static String digitaLetra() {
+    public static String digitaLetra() { // remover isso
         Scanner sc = new Scanner(System.in); 
             for(int i=0; i <= 5; i++) { 
                 System.out.print("\nInforme a letra da" + (i+1) + "tentativa: ");
@@ -125,26 +95,67 @@ public class JogoDaForca {
     }
 
     // Método para validar a jogada // AJUDA
-    public static boolean verificaAcerto(char letraUsuario) {
-        boolean resposta; 
-        char[] var = new JogoDaForca().palavraEscolhida();
-        if(letraUsuario.equals(palavraEscolhida())) {
-            resposta = true;
-        } else {
-            resposta = false;
-        }
-        return resposta;
-        }
+    public boolean verificaAcerto() {
+    }
 
-        // Método para efetuar a estratégia // AJUDA
-        public static void efetuaEstrategia() {
+    // Método para efetuar a estratégia // AJUDA
+    public void efetuaEstrategia() {
+        // 
+        for(int i=0; i < palavraOculta().length(); i++) {
+            palavraAdivinhada += "_";
+            
+            // Conta as tentativas
+            for(int tentativas = 0; ; tentativas++) {
 
-        }
+                System.out.println("Informe a letra da " + tentativas + "a tentativa: "); // cada tentativa é mostrado a rodada
 
-        // Método para identificar o vencedor / perdedor // AJUDA
-        public static String Placar() {
-            if()
-            return "VOCE GANHOU";
+                char letraTentada = new Scanner(System.in).next().charAt(0);// pega a entrada do usuário (.next lê a string até o primeiro espaço e o charAt Retorna o caractere em uma localização específica em uma String)
+
+                // verifica se a letra é repetida               
+                // se o caractere de letra tentada for encontrado em letras usadas, retornará -1. Caso seja encontrada, retornará 1, ou seja, será uma letra repetida
+                if(letrasUsadas.indexOf(letraTentada) >= 0){ 
+                    System.out.println("Você já tentou a letra " + letraTentada);
+                } else {
+                    letrasUsadas += letraTentada;// adicionando as letras usadas ás tentadas
+
+                    // Caso a letra tentada exista na palavra oculta, então execute:
+                    if(palavraOculta().indexOf(letraTentada) >= 0) {
+                        palavraAdivinhada = ""; // substituir _ pela letra
+
+                        // loop do comprimento da palavra oculta para substituir os _ pelas letras tentadas que existem na palavra oculta
+                        for(int j=0; j<palavraOculta().length(); j++) {
+                            //  pegamos o indice das letras usadas e verifica se a palavra oculta, na posição j, existe. Se existir, pega a letra da palavra chave e coloca na palavra adivinhada e se nao existir coloca o _
+                            palavraAdivinhada += letrasUsadas.indexOf(palavraOculta().charAt(j)) >= 0 ? palavraOculta().charAt(j) : "_";
+                        }
+
+                        // análise se o jogo continua ou nao(se há mais "_")
+                        if(palavraAdivinhada.contains("_")) {
+                            System.out.println("Ainda existem letras escondidas");
+                        } else {
+                            System.out.println("Parabéns, a palavra adivinhada era " + palavraAdivinhada);
+                            System.exit(0);
+                        }
+
+                    // Caso a letra tentada não exista na palavra oculta, então execute:
+                    } else {
+                        System.out.println("Infelizmente a letra " + letraTentada + "não existe na palavra");
+                    }
+
+                    // Caso a letra tentada não exista na palavra oculta, então execute:
+                }
+
+                // número de tentativa do usuário for igual a 10
+                if(tentativas == maxTentativas) {
+                    System.out.println("Já se foram 10 tentativas, a palavra era" + palavraOculta());
+
+                    System.exit(0); // finaliza o programa
+                }
+            }
         }
+    }
+
+    // Método para identificar o vencedor / perdedor // AJUDA
+    public String Placar() {
+    }
 }
 
