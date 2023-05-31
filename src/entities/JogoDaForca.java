@@ -82,7 +82,7 @@ public class JogoDaForca {
     public static String palavraOculta() {
         Random ran = new Random(); // Chamei a classe Random que gera números aleatórios
         String[] palavras = {"java", "gato", "frio", "mente", "chat"}; // Array de string com 5 palavras
-        return palavras[ran.nextInt(palavras.length - 1)]; // retorna um número inteiro aleatório entre 0 e o comprimento do array palavras ( nesse caso é 5)
+        return palavras[ran.nextInt(palavras.length)]; // retorna aleatoriamente uma das 5 palavras do array "palavra"
     }
 
     // Método para efetuar a jogada 
