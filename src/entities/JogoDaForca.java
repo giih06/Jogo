@@ -141,7 +141,6 @@ public class JogoDaForca {
                         System.out.println("Infelizmente a letra " + letraTentada + "não existe na palavra");
                     }
 
-                    // Caso a letra tentada não exista na palavra oculta, então execute:
                 }
 
                 // número de tentativa do usuário for igual a 10
