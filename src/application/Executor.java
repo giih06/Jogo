@@ -24,6 +24,8 @@ public class Executor {
 
 		case 2:
 			System.out.println("Jogo da Forca");
+			JogoDaForca forca = new JogoDaForca();
+			forca.jogar();
 			break;
 		
 		case 3:
@@ -35,6 +37,8 @@ public class Executor {
 			break;
 			
 		}
+
+		sc.close();
 
     }
 }
