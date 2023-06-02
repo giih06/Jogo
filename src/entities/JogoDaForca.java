@@ -103,69 +103,74 @@ public class JogoDaForca {
     }
 
 
-
-
     // método para a forca
     public void exibirForca(int tentativas) {
-        switch (tentativas) {
-            case 1:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|     ");
-                System.out.println("|     ");
-                System.out.println("---");
-                break;
-            case 2:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|    |");
-                System.out.println("|     ");
-                System.out.println("---");
-                break;
-            case 3:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|   /|");
-                System.out.println("|     ");
-                System.out.println("---");
-                break;
-            case 4:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|   /|\\");
-                System.out.println("|     ");
-                System.out.println("---");
-                break;
-            case 5:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|   /|\\");
-                System.out.println("|   /  ");
-                System.out.println("---");
-                break;
-            case 6:
-                System.out.println("------");
-                System.out.println("|    |");
-                System.out.println("|    O");
-                System.out.println("|   /|\\");
-                System.out.println("|   / \\");
-                System.out.println("---");
-                break;
-            default:
-            System.out.println("------");
-            System.out.println("|    |");
-            System.out.println("|     ");
-            System.out.println("|     ");
-            System.out.println("|     ");
-            System.out.println("---");
-            break;
+        if(tentativas == 0) {
+
         }
     }
+
+    // método para a forca
+    // public void exibirForca(int tentativas) {
+    //     switch (tentativas) {
+    //         case :
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|     ");
+    //             System.out.println("|     ");
+    //             System.out.println("---");
+    //             break;
+    //         case 2:
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|    |");
+    //             System.out.println("|     ");
+    //             System.out.println("---");
+    //             break;
+    //         case 3:
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|   /|");
+    //             System.out.println("|     ");
+    //             System.out.println("---");
+    //             break;
+    //         case 4:
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|   /|\\");
+    //             System.out.println("|     ");
+    //             System.out.println("---");
+    //             break;
+    //         case 5:
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|   /|\\");
+    //             System.out.println("|   /  ");
+    //             System.out.println("---");
+    //             break;
+    //         case 6:
+    //             System.out.println("------");
+    //             System.out.println("|    |");
+    //             System.out.println("|    O");
+    //             System.out.println("|   /|\\");
+    //             System.out.println("|   / \\");
+    //             System.out.println("---");
+    //             break;
+    //         default:
+    //         System.out.println("------");
+    //         System.out.println("|    |");
+    //         System.out.println("|     ");
+    //         System.out.println("|     ");
+    //         System.out.println("|     ");
+    //         System.out.println("---");
+    //         break;
+    //     }
+    // }
 
 }
 
