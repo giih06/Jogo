@@ -6,108 +6,7 @@ import java.util.Scanner;
  * 
  */
 public class JogoSudoko {
-    public static void main(String[] args) {
-        /* Define Cores */
-        String resetar = "\u001B[0m";     
-        String messageSystem = "\u001B[41;43m"; 
-        /* Define cores*/
-        Scanner sc = new Scanner(System.in);
-
-        int[][] m = new int[9][9]; // Matriz que vai ser usada.
-        int l = -1, c = -1, chosenNB = -1, levelDiff = -1;
-
-        boolean keepAsk = true; // Garante validez dos números digitados.
-        boolean[][] poCasas = new boolean[9][9]; // Posições físicas das quais não podem ser alteradas
-
-        // Dificuldade Fácil
-        int[][] easy = {{0,8,0,0,0,5,0,0,0},{0,3,9,2,0,1,0,8,7},{0,0,6,0,8,0,9,2,0},{7,2,0,0,0,0,0,3,0},
-            {0,0,4,0,0,0,1,0,0},{0,6,0,0,0,0,0,7,2},{0,4,5,0,3,0,7,0,0},{8,7,0,1,0,9,2,6,0},{0,0,0,5,0,0,0,9,0}};
-
-        // Dificuldade Médium
-        int[][] medium = {{7,8,0,0,0,0,0,3,0},{0,0,0,0,3,0,0,0,0},{0,6,3,5,0,2,0,0,0},{3,0,0,0,0,1,9,4,0},
-            {0,0,0,4,0,5,0,0,0},{0,4,2,3,0,0,0,0,8},{0,0,0,2,0,9,3,6,0},{0,0,0,0,8,0,0,0,0},{0,5,0,0,0,0,0,1,4}};
-
-        // Dificuldade Hard
-        int[][] hard = {{8,1,0,0,0,0,0,2,7},{0,0,4,0,0,0,1,0,0},{2,3,0,0,0,0,0,4,5},{0,0,0,1,7,4,0,0,0},
-            {4,0,0,5,0,6,0,0,9},{0,7,0,0,3,0,0,1,0},{0,0,0,0,1,0,0,0,0},{0,4,3,0,0,0,6,5,0},{1,0,0,3,0,7,0,0,8}};
-
-        // Dificuldade Módelo Base
-        int[][] Sudoku = {{8,1,0,0,0,0,0,2,7},{0,0,4,0,0,0,1,0,0},{2,3,0,0,0,0,0,4,5},{0,0,0,1,7,4,0,0,0},
-            {4,0,0,5,0,6,0,0,9},{0,7,0,0,3,0,0,1,0},{0,0,0,0,1,0,0,0,0},{0,4,3,0,0,0,6,5,0},{1,0,0,3,0,7,0,0,8}};
-
-
-        System.out.println("********************************************");
-        System.out.println("*              JOGO DE SUDOKU              *");
-        System.out.println("*                                          *");
-        System.out.println("********************************************");
-        System.out.println("*          Dificuldades disponíveis:       *");
-        System.out.println("*                 1. Fácil                 *");
-        System.out.println("*                 2. Médio                 *");
-        System.out.println("*                 3. Dificil               *");
-        System.out.println("********************************************");
-
-        // Seleção de dificuldade        
-        do {
-            System.out.print("Digite o numero da opção desejada:\n> ");
-            levelDiff = Integer.parseInt(sc.next());
-            if (levelDiff < 1 || levelDiff > 3)
-                System.out.println(messageSystem + "Opção inválida! Escolha 1, 2 ou 3" + resetar);
-            else
-                keepAsk = false;
-        } while (keepAsk);
-
-        if (levelDiff == 1) {
-            m = easy;
-            System.out.print("     " + messageSystem + " Dificuldade: Fácil  " + resetar);
-        }
-        if (levelDiff == 2) {
-            m = medium;
-            System.out.print("     " + messageSystem + " Dificuldade: Médio  " + resetar);
-        }
-        if (levelDiff == 3) {
-            m = hard;
-            System.out.print("     " + messageSystem + " Dificuldade: Difícil" + resetar);
-        }
-        poCasas = defOcup(poCasas, m);        
-        do {
-            keepAsk = true;
-            System.out.println();
-            showM(m);
-            // Questiona o usúario os valores a ser inseridos no tabuleiro
-            System.out.println("Informe números de 1 a 9 para l, c e numero a ser inserido no tabuleiro.");
-            do {
-                System.out.print("Linha > ");
-                l = Integer.parseInt(sc.next()) - 1;
-
-                System.out.print("Coluna > ");
-                c = Integer.parseInt(sc.next()) - 1;
-
-                System.out.print("Número > ");
-                chosenNB = Integer.parseInt(sc.next());
-                if(l < 0 || l > 8 || c < 0 || c > 8 || chosenNB < 1 || chosenNB > 9)
-                    System.out.println(messageSystem + "Somente números de 1 a 9 são válidos!" + resetar);
-                else
-                    keepAsk = false;
-            } while (keepAsk);
-            keepAsk = true; // Quando finaliza, retorna para questionar novamente
-            // Linhas que não podem ser alteradas
-            if(poCasas[l][c]) {
-                System.out.println(messageSystem + " Essas posicões são fixas, você não pode alterá-las! " + resetar);
-                showPosFix(poCasas, m);
-            } else {
-                if (possibleHere(m, l, c, chosenNB)) {
-                    m[l][c] = chosenNB;
-                } else {
-                    exibitM(m, l, c, chosenNB);
-                }
-            }
-            // Continua até finalizar o jogo
-            if (verifyTabM(Sudoku))
-                keepAsk = false;
-            pressEnter();
-        } while (keepAsk);
-        System.out.println("Parabéns");
-    }
+    
     public static boolean possibleHere(int[][] m, int l, int c, int numero) {
         // Questiona se o número correto está na linha
         for (int i = 0; i < m[0].length; i++) {
@@ -250,7 +149,7 @@ public class JogoSudoko {
         }
     }
     // Define a ocupação das casas
-    private static boolean[][] defOcup(boolean[][] poCasas, int[][] m) {
+    static boolean[][] defOcup(boolean[][] poCasas, int[][] m) {
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
                 if (m[i][j] != 0)
