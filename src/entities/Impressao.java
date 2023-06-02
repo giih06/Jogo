@@ -28,7 +28,7 @@ public class Impressao {
 			break;
 		
 		case 3:
-			System.out.println("Jogo da Velha");
+			Impressao.imprimirJogoDaVelha();
 			break;
 			
 		default:
@@ -145,8 +145,28 @@ public class Impressao {
         System.out.println("Parabéns");
     }
     
-    public static void imprimir(double arg){
-        System.out.println(arg);
+    public static void imprimirJogoDaVelha(){
+        int tabuleiro[][] = new int[3][3];
+		int vencedor=0;
+		
+		JogoDaVelha.introducao(tabuleiro); // Exibe a introdução e o tabuleiro inicial do jogo
+		
+		for(int rodada=0;vencedor==0;rodada++) {
+			// Loop principal do jogo
+			
+			JogoDaVelha.efetuar_jogada(tabuleiro, rodada);; // Solicita e efetua uma jogada
+			
+			vencedor=JogoDaVelha.verifica_vitoria(tabuleiro); // Verifica se há um vencedor ou empate
+		}
+		
+		if(vencedor==1)
+			System.out.println("JOGADOR 1 É O VENCEDOR!! PARABÉNS!!");
+		else if(vencedor==2)
+			System.out.println("JOGADOR 2 É O VENCEDOR!! PARABÉNS!!");
+		else if(vencedor==3)
+			System.out.println("EMPATE!!");
+		
+		System.out.print("Obrigado por jogar!");
     }
     
     public static void imprimir(String arg){
