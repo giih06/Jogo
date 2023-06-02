@@ -1,5 +1,4 @@
 package application;
-import entities.Impressao;
 import entities.JogoDaForca;
 import java.util.Scanner;
 

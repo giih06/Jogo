@@ -11,14 +11,13 @@ public class JogoDaForca {
     private String letrasUsadas;
     private String palavraAdivinhada;
     private int maxTentativas;
-    private int tentativas;
+    private int tentativasErradas;
 
     // Construtor
     public JogoDaForca() {
         letrasUsadas = "";
         palavraAdivinhada = "";
         maxTentativas = 6;
-        tentativas = 0;
     }
 
     // Método para definir a palavra oculta
@@ -60,8 +59,8 @@ public class JogoDaForca {
 
         // Caso a letra tentada não exista na palavra oculta, então execute:
         if (obterPalavraOculta().indexOf(letraTentada) < 0) { // quando o indexof retorna -1 significa que não existe a letra tentada dentro da palavra oculta
+            tentativasErradas++;
             System.out.println("Infelizmente a letra " + letraTentada + " não existe na palavra");
-            tentativas++; // conta mais uma tentativa
         }
     }
 
@@ -77,8 +76,8 @@ public class JogoDaForca {
     // Método para efetuar a jogada
     public void jogar() {
         for (int tentativas = 0; tentativas < maxTentativas; tentativas++) { // serão percorridas as 6 tentativas
-            exibirForca(tentativas);
             inicializarPalavraAdivinhada();
+            exibirForca(tentativasErradas);
             System.out.println("Informe a letra da " + (tentativas + 1) + "ª tentativa: ");
             char letraTentada = new Scanner(System.in).next().charAt(0); //Pega a entrada do usuário (.next lê a string até o primeiro espaço e o charAt Retorna o caractere em uma localização específica em uma String)
 
@@ -97,80 +96,63 @@ public class JogoDaForca {
             }
         }
 
-        System.out.println("Já se foram 10 tentativas, a palavra era " + obterPalavraOculta());
+        System.out.println("Já se foram 6 tentativas, a palavra era " + obterPalavraOculta());
         Placar(false);
         System.exit(0);
     }
 
-
     // método para a forca
-    public void exibirForca(int tentativas) {
-        if(tentativas == 0) {
-
+    public void exibirForca(int tentativasErradas) {
+        System.out.println("------");
+        System.out.println("|    |");
+    
+        switch (tentativasErradas) {
+            case 0:
+                System.out.println("|     ");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                break;
+            case 1:
+                System.out.println("|    O");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                break;
+            case 2:
+                System.out.println("|    O");
+                System.out.println("|    |");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                break;
+            case 3:
+                System.out.println("|    O");
+                System.out.println("|   /|");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                break;
+            case 4:
+                System.out.println("|    O");
+                System.out.println("|   /|\\");
+                System.out.println("|     ");
+                System.out.println("|     ");
+                break;
+            case 5:
+                System.out.println("|    O");
+                System.out.println("|   /|\\");
+                System.out.println("|   /  ");
+                System.out.println("|     ");
+                break;
+            case 6:
+                System.out.println("|    O");
+                System.out.println("|   /|\\");
+                System.out.println("|   / \\");
+                System.out.println("|     ");
+                break;
         }
+        
+        System.out.println("---");
     }
-
-    // método para a forca
-    // public void exibirForca(int tentativas) {
-    //     switch (tentativas) {
-    //         case :
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|     ");
-    //             System.out.println("|     ");
-    //             System.out.println("---");
-    //             break;
-    //         case 2:
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|    |");
-    //             System.out.println("|     ");
-    //             System.out.println("---");
-    //             break;
-    //         case 3:
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|   /|");
-    //             System.out.println("|     ");
-    //             System.out.println("---");
-    //             break;
-    //         case 4:
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|   /|\\");
-    //             System.out.println("|     ");
-    //             System.out.println("---");
-    //             break;
-    //         case 5:
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|   /|\\");
-    //             System.out.println("|   /  ");
-    //             System.out.println("---");
-    //             break;
-    //         case 6:
-    //             System.out.println("------");
-    //             System.out.println("|    |");
-    //             System.out.println("|    O");
-    //             System.out.println("|   /|\\");
-    //             System.out.println("|   / \\");
-    //             System.out.println("---");
-    //             break;
-    //         default:
-    //         System.out.println("------");
-    //         System.out.println("|    |");
-    //         System.out.println("|     ");
-    //         System.out.println("|     ");
-    //         System.out.println("|     ");
-    //         System.out.println("---");
-    //         break;
-    //     }
-    // }
 
 }
 
