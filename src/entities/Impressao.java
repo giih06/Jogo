@@ -168,13 +168,5 @@ public class Impressao {
 		
 		System.out.print("Obrigado por jogar!");
     }
-    
-    public static void imprimir(String arg){
-        System.out.println(arg);
-    }
-    
-    public static void imprimir(boolean arg){
-        System.out.println(arg);
-    }
 
 }
