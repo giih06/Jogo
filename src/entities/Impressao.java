@@ -21,9 +21,7 @@ public class Impressao {
 			break;
 
 		case 2:
-			System.out.println("Jogo da Forca");
-			JogoDaForca forca = new JogoDaForca();
-			forca.jogar();
+			Impressao.imprimirJogoDaForca();
 			break;
 		
 		case 3:
@@ -166,6 +164,26 @@ public class Impressao {
 			System.out.println("EMPATE!!");
 		
 		System.out.print("Obrigado por jogar!");
+    }
+
+    // Método para efetuar a jogada
+    public static void imprimirJogoDaForca() {
+        JogoDaForca jogo = new JogoDaForca();
+        jogo.exibirForca();
+
+        Scanner scanner = new Scanner(System.in);
+        jogo.inicializarPalavraOculta();
+
+        while (!jogo.jogoTerminado) {
+            System.out.println("Palavra atual: " + jogo.palavraAtual);
+            System.out.print("Digite uma letra: ");
+            char letra = scanner.nextLine().charAt(0);
+            jogo.efetuarEstrategia(letra);
+            jogo.exibirForca();
+        }
+
+        jogo.Placar();
+        scanner.close();
     }
 
 }
