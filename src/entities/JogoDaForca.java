@@ -13,13 +13,6 @@ public class JogoDaForca {
     private int maxTentativas;
     private int tentativasErradas;
 
-    // Construtor
-    public JogoDaForca() {
-        letrasUsadas = "";
-        palavraAdivinhada = "";
-        maxTentativas = 6;
-    }
-
     // Método para definir a palavra oculta
     public String obterPalavraOculta() {
         Random ran = new Random(); // Chamei a classe Random que gera números aleatórios
