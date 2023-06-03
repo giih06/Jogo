@@ -1,5 +1,5 @@
 package application;
-import entities.*;
+import entities.Impressao;
 
 public class Executor {
     // Executor

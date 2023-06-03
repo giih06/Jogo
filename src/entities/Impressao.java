@@ -1,6 +1,5 @@
 package entities;
 import java.util.Scanner;
-import entities.*;
 
 public class Impressao {
 
