@@ -6,7 +6,8 @@ import java.util.Scanner;
  * 
  */
 public class JogoSudoko {
-    public static void main(String[] args) {
+<<<<<<< HEAD
+    public static void jogar () {
         /* Define Cores */
         String resetar = "\u001B[0m";     
         String messageSystem = "\u001B[41;43m"; 
@@ -108,6 +109,9 @@ public class JogoSudoko {
         } while (keepAsk);
         System.out.println("Parabéns");
     }
+=======
+    
+>>>>>>> ff159f21d1fe62a28b522b0526dcd187888b3daf
     public static boolean possibleHere(int[][] m, int l, int c, int numero) {
         // Questiona se o número correto está na linha
         for (int i = 0; i < m[0].length; i++) {
@@ -250,7 +254,7 @@ public class JogoSudoko {
         }
     }
     // Define a ocupação das casas
-    private static boolean[][] defOcup(boolean[][] poCasas, int[][] m) {
+    static boolean[][] defOcup(boolean[][] poCasas, int[][] m) {
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
                 if (m[i][j] != 0)

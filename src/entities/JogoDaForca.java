@@ -28,11 +28,12 @@ public class JogoDaForca {
     }
 
     // método da palavra adivinhada
-    private void inicializarPalavraAdivinhada() {
+    public void inicializarPalavraAdivinhada() {
         // enqunato não tiver atingido o tamanho maximo da palavra
         for (int i = 0; i < obterPalavraOculta().length(); i++) {
             palavraAdivinhada += "_"; // a palavra adivinhada será preenchida com _
         }
+        System.out.println(palavraAdivinhada);
     }
 
     // Método para validar a jogada
