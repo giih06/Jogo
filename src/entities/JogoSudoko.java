@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 
  */
 public class JogoSudoko {
-<<<<<<< HEAD
+
     public static void jogar () {
         /* Define Cores */
         String resetar = "\u001B[0m";     
@@ -109,9 +109,6 @@ public class JogoSudoko {
         } while (keepAsk);
         System.out.println("Parabéns");
     }
-=======
-    
->>>>>>> ff159f21d1fe62a28b522b0526dcd187888b3daf
     public static boolean possibleHere(int[][] m, int l, int c, int numero) {
         // Questiona se o número correto está na linha
         for (int i = 0; i < m[0].length; i++) {
