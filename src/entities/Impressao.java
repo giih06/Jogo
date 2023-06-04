@@ -168,22 +168,22 @@ public class Impressao {
 
     // Método para efetuar a jogada
     public static void imprimirJogoDaForca() {
-        JogoDaForca jogo = new JogoDaForca();
-        jogo.exibirForca();
+        JogoDaForca jogo = new JogoDaForca(); // instanciei o jogo da forca
+        jogo.exibirForca(); // exibe a forca
 
-        Scanner scanner = new Scanner(System.in);
-        jogo.inicializarPalavraOculta();
+        Scanner sc = new Scanner(System.in);
+        jogo.inicializarPalavraOculta(); // inicializa a palavra oculta a ser adivinhada
 
-        while (!jogo.jogoTerminado) {
-            System.out.println("Palavra atual: " + jogo.palavraAtual);
+        while (!jogo.jogoTerminado) {  // enquanto o jogo não tiver terminado 
+            System.out.println("Palavra atual: " + jogo.palavraAtual); // exibe a palavra atualmente adivinhada pelo jogador
             System.out.print("Digite uma letra: ");
-            char letra = scanner.nextLine().charAt(0);
-            jogo.efetuarEstrategia(letra);
-            jogo.exibirForca();
+            char letra = sc.nextLine().charAt(0); // pula a linha e lê converte a letra em char e armazena a letra na variável "letra"
+            jogo.efetuarEstrategia(letra); // efetua a estratégia da letra
+            jogo.exibirForca(); // atualiza a exibição visual da forca após a jogada
         }
 
-        jogo.Placar();
-        scanner.close();
+        jogo.Placar(); // exibe o placar final da jogada
+        sc.close();
     }
 
 }
