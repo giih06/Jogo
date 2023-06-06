@@ -30,7 +30,7 @@ public class Sudoku {
         int l = -1, c = -1, chosenNB = -1, nivDif = 0;
         boolean keepAsk = true;
         int[][] sudoku = gerValidSudoku(1);
-		sudoku = gerValidSudoku(1);
+
 		for (int i = 0; i < sudoku.length; i++) {
     		for (int j = 0; j < sudoku[i].length; j++) {
        		m[i][j] = sudoku[i][j];
