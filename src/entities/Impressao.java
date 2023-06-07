@@ -101,7 +101,7 @@ public class Impressao {
             m = hard;
             System.out.print("     " + messageSystem + " Dificuldade: Difícil" + resetar);
         }
-        poCasas = JogoSudoko.defOcup(poCasas, m);        
+        poCasas = JogoSudoko.defyOcupation(poCasas, m);        
         do {
             keepAsk = true;
             System.out.println();
@@ -135,9 +135,9 @@ public class Impressao {
                 }
             }
             // Continua até finalizar o jogo
-            if (JogoSudoko.verifyTabM(Sudoku))
+            if (JogoSudoko.verifyTab(Sudoku))
                 keepAsk = false;
-            JogoSudoko.pressEnter();
+            JogoSudoko.Enter();
         } while (keepAsk);
         System.out.println("Parabéns");
     }

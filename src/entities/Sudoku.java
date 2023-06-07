@@ -1,7 +1,7 @@
 package entities;
 import java.util.Scanner;
 import java.util.Random;
-public class JogoSudoko {
+public class Sudoku {
 /**
  * @author Samuel Pereira
  * @version 1.02
