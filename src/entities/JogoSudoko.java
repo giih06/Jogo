@@ -7,124 +7,116 @@ public class JogoSudoko {
  * @version 1.02
  */
 	
-	public static void main(String[] args) {
-		/**
-		 * Variaveis que vão ser usadas
-		 * Cores, unicode 
-		 * Scanner = SC
-		 * Matriz = M
-		 * 
-		 * Boleanos Um pra validar as variaveis
-		 * e o outro pra continuar questionando 
-		 * usado na parte do Aperte enter
-		 * 
-		 * Linha e Coluna == L > linha, C > coluna
-		 * ChosenNB > Número escolhido
-		 *  nivDif > Nivel de dificuldade
-		 */
-        String resetColor = "\u001B[0m";
-        String backgroundColor = "\u001B[31;46m";
-        String outroBackground = "\u001B[41;43m";
-        Scanner sc = new Scanner(System.in);
-        int[][] m = new int[9][9];
-        boolean[][] poCasas = new boolean[9][9];
-        int l = -1, c = -1, chosenNB = -1, nivDif = 0;
-        boolean keepAsk = true;
-        int[][] sudoku = gerValidSudoku(1);
-		sudoku = gerValidSudoku(1);
-		for (int i = 0; i < sudoku.length; i++) {
-    		for (int j = 0; j < sudoku[i].length; j++) {
-       		m[i][j] = sudoku[i][j];
-   			}
+ public static void main(String[] args) {
+	jogoSudoku();
+}
+
+public static void jogoSudoku() {
+	String resetColor = "\u001B[0m";
+	String backgroundColor = "\u001B[31;46m";
+	String outroBackground = "\u001B[41;43m";
+	Scanner sc = new Scanner(System.in);
+	int[][] m = new int[9][9];
+	boolean[][] poCasas = new boolean[9][9];
+	int l = -1, c = -1, chosenNB = -1, nivDif = 0;
+	boolean keepAsk = true;
+	int[][] sudoku = gerValidSudoku(1);
+	for (int i = 0; i < sudoku.length; i++) {
+		for (int j = 0; j < sudoku[i].length; j++) {
+			m[i][j] = sudoku[i][j];
 		}
-        System.out.println(backgroundColor +
-						   "****************************************\n"
-						  +"*                                      *\n"
-						  +resetColor+outroBackground+
-						  "*            JOGO DE SUDOKU            *\n"
-						  +resetColor+backgroundColor
-						  +"*                                      *\n"
-						  +"****************************************\n"
-						  +"*                                      *\n"
-						  +resetColor+outroBackground+
-						  "*    Dificuldades Disponíveis:         *\n"
-						  +resetColor+backgroundColor
-						  +"*                                      *\n"
-						  +resetColor+outroBackground+
-						  "*   1. Fácil                           *\n"
-						  +resetColor+backgroundColor
-						  +resetColor+outroBackground+
-						  "    2. Médio                           *\n"
-						  +resetColor+backgroundColor
-						  +resetColor+outroBackground+
-						  "*   3. Díficil                         *\n"
-						  +resetColor+backgroundColor
-						  +"*                                      *\n"
-						  +"****************************************\n"
-						  + resetColor);
-		
+	}
+	System.out.println(backgroundColor +
+			"****************************************\n"
+			+ "*                                      *\n"
+			+ resetColor + outroBackground +
+			"*            JOGO DE SUDOKU            *\n"
+			+ resetColor + backgroundColor
+			+ "*                                      *\n"
+			+ resetColor + outroBackground +
+			"*    Dificuldades Disponíveis:         *\n"
+			+ resetColor + backgroundColor
+			+ "*                                      *\n"
+			+ resetColor + outroBackground +
+			"*   1. Fácil                           *\n"
+			+ resetColor + backgroundColor
+			+ resetColor + outroBackground +
+			"    2. Médio                           *\n"
+			+ resetColor + backgroundColor
+			+ resetColor + outroBackground +
+			"*   3. Díficil                         *\n"
+			+ resetColor + backgroundColor
+			+ "*                                      *\n"
+			+ "****************************************\n"
+			+ resetColor);
+
+	do {
+		System.out.println("Digite o número da opção desejada:\n> ");
+		nivDif = Integer.parseInt(sc.next());
+		if (nivDif < 1 || nivDif > 3)
+			System.out.println("Opção inválida, escolha 1, 2 ou 3");
+		else
+			keepAsk = false;
+	} while (keepAsk);
+	if (nivDif == 1) {
+		sudoku = gerValidSudoku(1);
+		exibitM(sudoku, 8, 8, 3);
+	}
+	if (nivDif == 2) {
+		sudoku = gerValidSudoku(2);
+		exibitM(sudoku, 8, 8, 3);
+	}
+	if (nivDif == 3) {
+		sudoku = gerValidSudoku(3);
+		exibitM(sudoku, 8, 8, 3);
+	}
+	poCasas = defyOcupation(poCasas, m);
+	do {
+		keepAsk = true;
+		System.out.println();
+		showM(m);
+		// Questiona o usúario os valores a ser inseridos no tabuleiro
+		System.out.println("Informe números de 1 a 9 para linha, coluna e o número a ser inserido no tabuleiro.");
 		do {
-			System.out.println("Digite o número da opção desejada:\n> ");
-			nivDif = Integer.parseInt(sc.next());
-			if(nivDif < 1 || nivDif > 3)
-				System.out.println("Opção inválida, escolha 1, 2 ou 3");
+			System.out.print("Linha > ");
+			l = Integer.parseInt(sc.next()) - 1;
+
+			System.out.print("Coluna > ");
+			c = Integer.parseInt(sc.next()) - 1;
+
+			System.out.print("Número > ");
+			chosenNB = Integer.parseInt(sc.next());
+			// Números escolhidos de 1 a 9, não pode se menor que 1 e maior que 9
+			if (l < 0 || l > 8 || c < 0 || c > 8 || chosenNB < 1 || chosenNB > 9)
+				System.out.println(outroBackground + "Somente números de 1 a 9 são válidos!" + resetColor);
 			else
 				keepAsk = false;
 		} while (keepAsk);
-        if (nivDif == 1) {
-            sudoku = gerValidSudoku(1);
-            exibitM(sudoku, 8, 8, 3);
-        }
-        if (nivDif == 2) {
-            sudoku = gerValidSudoku(2);
-            exibitM(sudoku, 8, 8, 3);
-        }
-        if (nivDif == 3) {
-            sudoku = gerValidSudoku(3);
-            exibitM(sudoku, 8, 8, 3);
-        }
-		poCasas = defyOcupation(poCasas, m);        
-        do {
-            keepAsk = true;
-            System.out.println();
-            showM(m);
-            // Questiona o usúario os valores a ser inseridos no tabuleiro
-            System.out.println("Informe números de 1 a 9 para linha, coluna e o número a ser inserido no tabuleiro.");
-            do {
-                System.out.print("Linha > ");
-                l = Integer.parseInt(sc.next()) - 1;
-            
-                System.out.print("Coluna > ");
-                c = Integer.parseInt(sc.next()) - 1;
-            
-                System.out.print("Número > ");
-                chosenNB = Integer.parseInt(sc.next());
-                // Números escolhidos de 1 a 9, não pode se menor que 1 e maior que 9
-                if(l < 0 || l > 8 || c < 0 || c > 8 || chosenNB < 1 || chosenNB > 9)
-                    System.out.println(outroBackground + "Somente números de 1 a 9 são válidos!" + resetColor);
-                else
-                    keepAsk = false;
-            } while (keepAsk);
-            keepAsk = true; // Quando finaliza, retorna para questionar novamente
-            // Linhas que não podem ser alteradas
-            if(poCasas[l][c]) {
-                System.out.println(outroBackground + " Essas posicões são fixas, você não pode alterá-las! " + resetColor);
-                showPosFix(poCasas, m);
-            } else {
-                if (possibleHere(m, l, c, chosenNB)) {
-                    m[l][c] = chosenNB;
-                } else {
-                    exibitM(m, l, c, chosenNB);
-                }
-            }
-            // Continua até finalizar o jogo
-            if (verifyTab(sudoku))
-                keepAsk = false;
-            Enter();
-        } while (keepAsk);
-        System.out.println("Parabéns");
-	}
-	
+		keepAsk = true; // Quando finaliza, retorna para questionar novamente
+		// Linhas que não podem ser alteradas
+		if (poCasas[l][c]) {
+			System.out.println(outroBackground + " Essas posicões são fixas, você não pode alterá-las! " + resetColor);
+			showPosFix(poCasas, m);
+		} else {
+			if (possibleHere(m, l, c, chosenNB)) {
+				m[l][c] = chosenNB;
+			} else {
+				exibitM(m, l, c, chosenNB);
+			}
+		}
+		// Continua até finalizar o jogo
+		if (verifyTab(sudoku))
+			keepAsk = false;
+		Enter();
+	} while (keepAsk);
+	System.out.println("Parabéns");
+}
+
+/**
+ * A primeira parte, define a quantidade de céluals a serem zeradas com base na dificuldade
+ * Depois na outra parte, vem o aleatorizador, que vai de forma aleatoria, duh, vai zerar algumas células com base na quantidade definida
+ */
+
 	/**
 	 *  A primeira parte, define a quantidade de céluals a serem zeradas
 	 *  com base na dificuldade
@@ -132,6 +124,7 @@ public class JogoSudoko {
 	 *  aleatoria, duh, vai zerar algumas células com base na quantidade
 	 *  definida 
 	 */
+
 	 public static int[][] gerValidSudoku(int nivDif) {
 		int[][] m = new int[9][9];
 	
