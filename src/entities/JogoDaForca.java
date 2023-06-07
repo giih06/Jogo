@@ -36,7 +36,7 @@ public class JogoDaForca {
     // Método para validar a jogada
     public boolean validarJogada(char letra) {
         letra = Character.toLowerCase(letra); // a letra fornecida será convertida para miníscula
-        return palavraOculta.contains(String.valueOf(letra)); // Verifica se a palavra oculta contém a letra fornecida.O metodo valueOf da classe String converte a letra em uma string. O método contains() é usado para verificar se a letra está presente na palavra. Se a letra estiver presente, o método retorna true, indicando que a jogada é válida. Caso contrário, retorna false, indicando que a jogada é inválida.
+        return palavraOculta.contains(String.valueOf(letra)); // Verifica se a palavra oculta contém a letra fornecida. (O metodo valueOf da classe String converte a letra em uma string. O método contains() é usado para verificar se a letra está presente na palavra. Se a letra estiver presente, o método retorna true, indicando que a jogada é válida. Caso contrário, retorna false, indicando que a jogada é inválida).
     }
 
     // Método para identificar o vencedor / perdedor
