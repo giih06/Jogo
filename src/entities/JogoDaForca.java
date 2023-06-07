@@ -9,16 +9,9 @@ public class JogoDaForca {
     // Declarando os atributos
     private String palavraOculta;
     public String palavraAtual;
-    private int tentativasRestantes;
-    public boolean jogoTerminado;
-    public boolean jogadorVenceu;
-
-    // Construtor
-    public JogoDaForca() {
-        tentativasRestantes = 6;
-        jogoTerminado = false;
-        jogadorVenceu = false;
-    }
+    private int tentativasRestantes = 6;
+    public boolean jogoTerminado = false;
+    public boolean jogadorVenceu = false;
 
     // Método para definir a palavra oculta
     public String obterPalavraOculta() {
